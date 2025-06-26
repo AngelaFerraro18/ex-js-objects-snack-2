@@ -108,6 +108,35 @@ console.log(secondBurgerrr.maker.restaurant.name); // "Hyur's II"
 
 /* Qual è il metodo migliore per clonare l’oggetto chef, e perché?*/
 
+// const cheff = {
+//     name: "Chef Hyur",
+//     age: 29,
+//     makeBurger: (num = 1) => {
+//         console.log(`Ecco ${num} hamburger per te!`);
+//     },
+//     restaurant: {
+//         name: "Hyur's Burgers",
+//         welcomeClient: () => {
+//             console.log("Benvenuto!");
+//         },
+//         address: {
+//             street: 'Main Street',
+//             number: 123,
+//             showAddress: () => {
+//                 console.log("Main Street 123");
+//             }
+//         },
+//         isOpen: true,
+//     }
+// }
+
+// Userei lo spread operator perchè mi permette di clonare anche le funzioni
+
+
+/* Crea una funzione che permette la copia profonda (deep copy) di un oggetto, che copia anche i suoi metodi (proprietà che contengono funzioni). Usa l’oggetto di Code Question 6 come test.
+
+⚠️ Serve usare una funzione ricorsiva! (fai un po’ di ricerca).*/
+
 const cheff = {
     name: "Chef Hyur",
     age: 29,
@@ -130,4 +159,21 @@ const cheff = {
     }
 }
 
-// Userei lo spread operator perchè mi permette di clonare anche le funzioni
+function clonaChef(valore) {
+    if (typeof valore !== 'object' || valore === null) {
+        return valore;
+    }
+
+
+    const clone = Array.isArray(valore) ? [] : {};
+
+    for (let key in valore) {
+        clone[key] = clonaChef(valore[key]);
+    }
+
+    return clone;
+}
+
+const cloneCheff = clonaChef(cheff);
+
+console.log(cloneCheff);
