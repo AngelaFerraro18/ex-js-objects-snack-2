@@ -28,7 +28,7 @@ secondBurgers.ingredients[0] = "Salad";
 console.log(hamburgers.ingredients[0]); // Salad
 console.log(secondBurgers.ingredients[0]); // Salad
 
-// In questo caso sono stati creati due oggetti
+// In questo caso sono stati creati 3 oggetti perchè si conta anche l'array ma essendo annidato, al clone non risulta un nuovo array
 
 /* Quanti oggetti sono stati creati in memoria durante l'esecuzione di questo codice?*/
 
@@ -49,7 +49,7 @@ const hamburgerr = {
 const secondBurgerr = structuredClone(hamburgerr);
 const thirdBurger = structuredClone(hamburgerr);
 
-// In questo caso sono stati creati 3 oggetti
+// In questo caso sono stati creati 9 oggetti perchè ci sono oggetti annidati e ogni volta che clono, clono anche gli oggetti annidati
 
 /* Qual è il metodo migliore per clonare l’oggetto chef, e perché?
 Qual è il metodo migliore per clonare l’oggetto restaurant, e perché?*/
@@ -108,29 +108,29 @@ console.log(secondBurgerrr.maker.restaurant.name); // "Hyur's II"
 
 /* Qual è il metodo migliore per clonare l’oggetto chef, e perché?*/
 
-// const cheff = {
-//     name: "Chef Hyur",
-//     age: 29,
-//     makeBurger: (num = 1) => {
-//         console.log(`Ecco ${num} hamburger per te!`);
-//     },
-//     restaurant: {
-//         name: "Hyur's Burgers",
-//         welcomeClient: () => {
-//             console.log("Benvenuto!");
-//         },
-//         address: {
-//             street: 'Main Street',
-//             number: 123,
-//             showAddress: () => {
-//                 console.log("Main Street 123");
-//             }
-//         },
-//         isOpen: true,
-//     }
-// }
+const cheff = {
+    name: "Chef Hyur",
+    age: 29,
+    makeBurger: (num = 1) => {
+        console.log(`Ecco ${num} hamburger per te!`);
+    },
+    restaurant: {
+        name: "Hyur's Burgers",
+        welcomeClient: () => {
+            console.log("Benvenuto!");
+        },
+        address: {
+            street: 'Main Street',
+            number: 123,
+            showAddress: () => {
+                console.log("Main Street 123");
+            }
+        },
+        isOpen: true,
+    }
+}
 
-// Userei lo spread operator perchè mi permette di clonare anche le funzioni
+// Userei lo spread operator perchè mi permette di clonare anche le funzioni però dovrei stare attenta perchè ci sono tanti oggetti annidati e non ci sono metodi che ci permettono di fare una deep copy. Quindi si sarebbero dovuti fare tanti spread operator quanti sono quelli presenti nell'oggetto di partenza però per evitare ciò possiamo usare una funzione ricorsiva.
 
 
 /* Crea una funzione che permette la copia profonda (deep copy) di un oggetto, che copia anche i suoi metodi (proprietà che contengono funzioni). Usa l’oggetto di Code Question 6 come test.
